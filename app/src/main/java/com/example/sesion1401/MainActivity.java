@@ -43,8 +43,10 @@ public class MainActivity extends AppCompatActivity {
             ResultSet rs=st.executeQuery("SELECT * FROM usuarios where codigo"+"where logeo='"+txtUsu.getText().toString()+"'and clave='"+txtPass.getText().toString()+"'");
             if(rs.next()){
 
-               // String tipoU=rs.getString()
+                String tipoU=rs.getString(2);
                 Toast.makeText(getApplicationContext(),"Conexion establecida "+rs.getString(3),Toast.LENGTH_SHORT).show();
+                //if (tipoU.compareTo("TIU00001")==0){//cliente
+                    //Intent() x=getIntent()
             }
         }catch (Exception e){
             Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
