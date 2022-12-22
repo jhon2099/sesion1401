@@ -47,5 +47,11 @@
             android:layout_height="wrap_content"
             android:onClick="Consulta"
             android:text="inicio" />
+
+        <Button
+            android:id="@+id/btnInsert"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="insertar" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

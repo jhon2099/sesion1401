@@ -3,6 +3,7 @@ package com.example.sesion1401;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
@@ -30,12 +31,16 @@ public class MainActivity extends AppCompatActivity {
             StrictMode.ThreadPolicy pol=new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(pol);
             Class.forName("net.sourceforge.jtds.jdbc.Driver");
-            cnn= DriverManager.getConnection("jdbc:jtds:sqlserver://192.168.1.25:1433/BDPrueba3;"+
-                    "instance=SQLEXPRESS2019;user=sa;password=12345");
+            cnn= DriverManager.getConnection("jdbc:jtds:sqlserver://192.168.1.25:1433/BDCarrito;"+
+                    "instance=SQL2019G2;user=sa;password=12345");
         }catch (Exception e){
             Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
         }
         return cnn;
+    }
+    public void EnvioPrueba(View view){
+        Intent x=new Intent(this,frmManTipoUser.class);
+        startActivity(x);
     }
     public void Consulta(View view){
         try {
@@ -44,9 +49,19 @@ public class MainActivity extends AppCompatActivity {
             if(rs.next()){
 
                 String tipoU=rs.getString(2);
-                Toast.makeText(getApplicationContext(),"Conexion establecida "+rs.getString(3),Toast.LENGTH_SHORT).show();
-                //if (tipoU.compareTo("TIU00001")==0){//cliente
-                    //Intent() x=getIntent()
+                Toast.makeText(getApplicationContext(),"Conexion establecida "+rs.getString(2),Toast.LENGTH_SHORT).show();
+               if (tipoU.compareTo("TIU00001")==0){//cliente
+                    Intent x=new Intent(this,frmMainCliente.class);
+                    startActivity(x);
+               }
+                if (tipoU.compareTo("TIU00002")==0){//admin
+                    Intent x=new Intent(this,frmMainAdmin2.class);
+                    startActivity(x);
+                }
+                if (tipoU.compareTo("TIU00003")==0){//invitado
+                    Intent x=new Intent(this,frmMainInvitado.class);
+                    startActivity(x);
+                }
             }
         }catch (Exception e){
             Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
